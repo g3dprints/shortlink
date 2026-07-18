@@ -50,14 +50,11 @@
             // Si entras directo a tu dominio limpio, te muestra el creador de enlaces
             document.getElementById('panel-creador').style.display = 'block';
         }
-
-        // Función que genera el texto exacto para tu NFC
+        
         function generarLink() {
-            const user = document.getElementById('input-usuario').value.trim().replace('@', '');
-            if (user === "") return alert("Por favor escribe un usuario válido");
-            
-            const linkCorto = `${miDominio}?u=${user}`;
-            
+            const user = document.getElementById('input-usuario').value;
+            const linkCorto = window.location.origin + window.location.pathname + '?u=' + user;
+    
             document.getElementById('texto-resultado').innerText = linkCorto;
             document.getElementById('zona-resultado').style.display = 'block';
         }
