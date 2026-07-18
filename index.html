@@ -57,7 +57,7 @@
     function generarLink() {
         const user = document.getElementById('input-usuario').value;
         // CORRECCIÓN: Se añadió una barra "/" antes del signo "?" para que el hosting no rompa la URL generada
-        const linkCorto = window.location.origin + window.location.pathname + '/?u=' + user;
+        const linkCorto = window.location.origin + window.location.pathname + '?u=' + user;
 
         document.getElementById('texto-resultado').innerText = linkCorto;
         document.getElementById('zona-resultado').style.display = 'block';
