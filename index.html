@@ -17,6 +17,7 @@
             const u = new URLSearchParams(window.location.search).get('u');
             if (u) {
                 document.getElementById('pantalla-links').style.display = 'flex';
+                // Corrección: Añadida la barra inclinada '/' obligatoria para el formato correcto de Instagram
                 document.getElementById('link-app').href = `instagram://user?username=${u}`;
                 document.getElementById('link-web').href = `https://instagram.com{u}`;
             } else {
