@@ -53,7 +53,7 @@
         
         function generarLink() {
             const user = document.getElementById('input-usuario').value;
-            const linkCorto = window.location.origin + window.location.pathname + '?u=' + user;
+            const linkCorto = window.location.origin + window.location.pathname + '/?u=' + user;
     
             document.getElementById('texto-resultado').innerText = linkCorto;
             document.getElementById('zona-resultado').style.display = 'block';
