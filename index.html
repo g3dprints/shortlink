@@ -36,32 +36,31 @@
     </div>
 
     <script>
-    // Detecta automáticamente si hay un usuario en la URL al cargar la página
-    const urlParams = new URLSearchParams(window.location.search);
-    const usuarioDestino = urlParams.get('u');
-    const miDominio = window.location.origin + window.location.pathname;
+        // Detecta automáticamente si hay un usuario en la URL al cargar la página
+        const urlParams = new URLSearchParams(window.location.search);
+        const usuarioDestino = urlParams.get('u');
+        const miDominio = window.location.origin + window.location.pathname;
 
-    if (usuarioDestino) {
-        // Si la URL contiene ?u=usuario, muestra los botones de redirección
-        // CORRECCIÓN: Se cambió 'pantalla-redireccion' por 'pantalla-links' para que coincida con el HTML de tus botones
-        document.getElementById('pantalla-links').style.display = 'flex';
-        document.getElementById('link-app').href = `instagram://user?username=${usuarioDestino}`;
-        
-        // CORRECCIÓN: Se añadió el símbolo "$" y la barra "/" para crear la URL web perfecta de Instagram
-        document.getElementById('link-web').href = `https://instagram.com{usuarioDestino}`;
-    } else {
-        // Si entras directo a tu dominio limpio, te muestra el creador de enlaces
-        document.getElementById('panel-creador').style.display = 'block';
-    }
-    
-    function generarLink() {
-        const user = document.getElementById('input-usuario').value;
-        // CORRECCIÓN: Se añadió una barra "/" antes del signo "?" para que el hosting no rompa la URL generada
-        const linkCorto = window.location.origin + window.location.pathname + '?u=' + user;
+        if (usuarioDestino) {
+            // Si la URL contiene ?u=usuario, muestra los botones de redirección
+            document.getElementById('pantalla-redireccion').style.display = 'flex';
+            document.getElementById('link-app').href = `instagram://user?username=${usuarioDestino}`;
+            document.getElementById('link-web').href = `https://instagram.com/${usuarioDestino}`;
+        } else {
+            // Si entras directo a tu dominio limpio, te muestra el creador de enlaces
+            document.getElementById('panel-creador').style.display = 'block';
+        }
 
-        document.getElementById('texto-resultado').innerText = linkCorto;
-        document.getElementById('zona-resultado').style.display = 'block';
-    }
-</script>
+        // Función que genera el texto exacto para tu NFC
+        function generarLink() {
+            const user = document.getElementById('input-usuario').value.trim().replace('@', '');
+            if (user === "") return alert("Por favor escribe un usuario válido");
+            
+            const linkCorto = `${miDominio}?u=${user}`;
+            
+            document.getElementById('texto-resultado').innerText = linkCorto;
+            document.getElementById('zona-resultado').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
