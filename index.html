@@ -16,9 +16,14 @@
         window.onload = function() {
             const u = new URLSearchParams(window.location.search).get('u');
             if (u) {
+                // Limpia posibles @ o espacios que metas por error
+                const usuarioLimpio = u.trim().replace('@', '');
+                
                 document.getElementById('pantalla-links').style.display = 'flex';
-                document.getElementById('link-app').href = `instagram://user?username=${u}`;
-                document.getElementById('link-web').href = `https://instagram.com{u}`;
+                
+                // Asigna las rutas correctas con la barra "/" explícita desde el principio
+                document.getElementById('link-app').href = "instagram://user?username=" + usuarioLimpio;
+                document.getElementById('link-web').href = "https://instagram.com" + usuarioLimpio;
             } else {
                 document.getElementById('panel-creador').style.display = 'block';
             }
@@ -37,7 +42,7 @@
     <div id="panel-creador" class="panel">
         <h3>Creador de Links NFC</h3>
         <input type="text" id="i" placeholder="Usuario de Instagram"><br>
-        <button onclick="alert(window.location.origin + window.location.pathname + '?u=' + document.getElementById('i').value)">Generar Link</button>
+        <button onclick="alert(window.location.origin + window.location.pathname + '?u=' + document.getElementById('i').value.trim().replace('@', ''))">Generar Link</button>
     </div>
 
 </body>
