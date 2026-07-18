@@ -45,7 +45,7 @@
             // Si la URL contiene ?u=usuario, muestra los botones de redirección
             document.getElementById('pantalla-redireccion').style.display = 'flex';
             document.getElementById('link-app').href = `instagram://user?username=${usuarioDestino}`;
-            document.getElementById('link-web').href = `https://instagram.com{usuarioDestino}`;
+            document.getElementById('link-web').href = `https://instagram.com${usuarioDestino}`;
         } else {
             // Si entras directo a tu dominio limpio, te muestra el creador de enlaces
             document.getElementById('panel-creador').style.display = 'block';
@@ -53,7 +53,7 @@
         
         function generarLink() {
             const user = document.getElementById('input-usuario').value;
-            const linkCorto = window.location.origin + window.location.pathname + '/?u=' + user;
+            const linkCorto = window.location.origin + window.location.pathname + '?u=' + user;
     
             document.getElementById('texto-resultado').innerText = linkCorto;
             document.getElementById('zona-resultado').style.display = 'block';
